@@ -16,14 +16,6 @@ User.init(
     salt: {
       type: DataTypes.STRING,
     },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    lastname: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
   },
   {
     sequelize: db,

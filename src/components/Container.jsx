@@ -1,30 +1,34 @@
 import React from "react";
+import CardPeli from "./CardInicio";
 
 const Container = ({ peliculas }) => {
   let foto = "https://image.tmdb.org/t/p/w500";
   return (
     <div>
-      <h2 className="titulo">Trending Movies</h2>
+      <h2 className="titulo">Top 20 peliculas de la semana</h2>
       <table>
-        <thead>
-          <tr className="container">
-            <td></td>
-          </tr>
-        </thead>
+        <thead></thead>
         <tbody className="contenedor">
           {peliculas
-            ? peliculas.map((pelicula) => (
-                <tr className="container" key={pelicula.id}>
-                  <td>
-                    <h5>{pelicula.title}</h5>
+            ? peliculas.map((fav) => (
+                <CardPeli fav={fav} />
+                // <tr key={pelicula.id}>
+                //   <td>
+                //     <figure class="card card--water">
+                //       <div class="card__image-container">
+                //         <img
+                //           src={foto.concat(pelicula.poster_path)}
+                //           alt="Espeon"
+                //           class="card__image"
+                //         />
+                //       </div>
 
-                    <img
-                      className="poster"
-                      src={foto.concat(pelicula.poster_path)}
-                      alt="foto"
-                    />
-                  </td>
-                </tr>
+                //       <figcaption class="card__caption">
+                //         <h1 class="card__name">{pelicula.title}</h1>
+                //       </figcaption>
+                //     </figure>
+                //   </td>
+                // </tr>
               ))
             : ""}
         </tbody>

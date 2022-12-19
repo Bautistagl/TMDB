@@ -54,49 +54,83 @@ const BusquedaSeries = (peliculas) => {
     <div className="background">
       <Navbar bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand> Buscar Series</Navbar.Brand>
+          <Navbar.Brand> Buscar Peliculas</Navbar.Brand>
           <form onSubmit={handleSubmit}>
-            <label>Serie: </label>
+            <label>Pelicula: </label>
             <input value={titulo} onChange={handleTitulo}></input>
 
             <button type="submit">Submit</button>
           </form>
         </Container>
-        <ButtonGroup size="sm">
-          <Button
-            variant="dark"
-            onClick={() => {
-              HandlePrevious();
-            }}
-          >
-            ANTERIOR
-          </Button>
-          <Button
-            variant="dark"
-            onClick={() => {
-              HandleNext();
-            }}
-          >
-            SIGUIENTE
-          </Button>
-          <Button
-            variant="dark"
-            onClick={() => {
-              navigate("/Usuario");
-            }}
-          >
-            Volver a mi pagina
-          </Button>
-          <Button
-            variant="dark"
-            size="sm"
-            onClick={() => {
-              handleLogOut();
-            }}
-          >
-            {" "}
-            LOGOUT
-          </Button>
+        <ButtonGroup size="sm" aria-label="Basic example">
+          <div className="navbar2">
+            <ul>
+              <a className="link1" href="#">
+                <li
+                  onClick={() => {
+                    HandlePrevious();
+                  }}
+                >
+                  Anterior
+                  <span />
+                  <span />
+                  <span />
+                  <span />
+                </li>
+              </a>
+            </ul>
+          </div>
+          <div className="navbar2">
+            <ul>
+              <a className="link1" href="#">
+                <li
+                  onClick={() => {
+                    HandleNext();
+                  }}
+                >
+                  Siguiente
+                  <span />
+                  <span />
+                  <span />
+                  <span />
+                </li>
+              </a>
+            </ul>
+          </div>
+          <div className="navbar2">
+            <ul>
+              <a className="link1" href="#">
+                <li
+                  onClick={() => {
+                    navigate("/Usuario");
+                  }}
+                >
+                  Inicio
+                  <span />
+                  <span />
+                  <span />
+                  <span />
+                </li>
+              </a>
+            </ul>
+          </div>
+          <div className="navbar2">
+            <ul>
+              <a className="link1" href="#">
+                <li
+                  onClick={() => {
+                    handleLogOut();
+                  }}
+                >
+                  Cerrar Sesion
+                  <span />
+                  <span />
+                  <span />
+                  <span />
+                </li>
+              </a>
+            </ul>
+          </div>
         </ButtonGroup>
       </Navbar>
 

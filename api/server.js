@@ -7,6 +7,7 @@ const db = require("./config");
 const models = require("./modelos");
 const routes = require("./routes");
 const cookieParser = require("cookie-parser");
+const cors = require("cors");
 
 // app.use(
 //   express.static(
@@ -17,7 +18,15 @@ app.use(volleyball);
 app.use(express.static("public"));
 app.use(express.json());
 app.use(cookieParser());
-
+app.use(
+  cors({
+    // Si aún no tenes deployado tu front en origin va la url local.
+    // Una vez que se deploye el front acá va esa url que te entrega.
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST", "DELETE", "OPTIONS"],
+    credentials: true,
+  })
+);
 app.use("/api", routes);
 app.use("/api", (req, res) => {
   res.sendStatus(404);
@@ -34,7 +43,7 @@ app.use((err, req, res, next) => {
 });
 db.sync({ force: false })
   .then(function () {
-    app.listen(3001, () =>
+    app.listen(5432, () =>
       console.log("Servidor escuchando en el puerto 3001")
     );
   })

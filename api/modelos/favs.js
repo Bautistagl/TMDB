@@ -5,9 +5,13 @@ const User = require("./users");
 class Favs extends Model {}
 Favs.init(
   {
-    fotoPelicula: DataTypes.STRING,
-    tituloPelicula: DataTypes.STRING,
-    idPelicula: DataTypes.STRING,
+    foto: DataTypes.STRING,
+    titulo: DataTypes.STRING,
+    valoracion: DataTypes.STRING,
+    fecha: DataTypes.STRING,
+    adult: DataTypes.BOOLEAN,
+    resumen: DataTypes.TEXT,
+    idd: DataTypes.STRING,
   },
   {
     sequelize: db,

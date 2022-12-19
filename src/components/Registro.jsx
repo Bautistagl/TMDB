@@ -41,33 +41,61 @@ const Registro = () => {
   };
 
   return (
-    <div className="background" style={{ height: "670px" }}>
-      <h2>Registro</h2>
-
-      <form onSubmit={handleRegistro}>
-        <input value={email} onChange={handleEmail} placeholder="Email"></input>
-        <br />
-        <input
-          type="password"
-          value={password}
-          onChange={handlePassword}
-          placeholder="Password"
-        ></input>
-        <br />
-        <input value={name} onChange={handleName} placeholder="Name"></input>
-        <br />
-        <input
-          value={lastname}
-          onChange={handleLastname}
-          placeholder="Lastname"
-        ></input>
-        <br />
-
-        <Button variant="dark" type="submit">
-          Registrarse
-        </Button>
-      </form>
-      <br />
+    <div className="container">
+      <div className="screen">
+        <div className="screen__content">
+          <form onSubmit={handleRegistro} className="login">
+            <div className="login__field">
+              <i className="login__icon fas fa-user" />
+              <input
+                value={email}
+                onChange={handleEmail}
+                type="text"
+                className="login__input"
+                placeholder=" Email"
+              />
+            </div>
+            <div className="login__field">
+              <i className="login__icon fas fa-lock" />
+              <input
+                value={password}
+                onChange={handlePassword}
+                type="password"
+                className="login__input"
+                placeholder="Password"
+              />
+            </div>
+            <div className="login__field">
+              <i className="login__icon fas fa-lock" />
+              <input
+                value={name}
+                onChange={handleName}
+                className="login__input"
+                placeholder="Nombre"
+              />
+            </div>
+            <div className="login__field">
+              <i className="login__icon fas fa-lock" />
+              <input
+                value={lastname}
+                onChange={handleLastname}
+                className="login__input"
+                placeholder="Apellido"
+              />
+            </div>
+            <button type="submit" className="button login__submit">
+              <span className="button__text">Registrarse</span>
+              <i className="button__icon fas fa-chevron-right" />
+            </button>
+          </form>
+        </div>
+        <div className="screen__background">
+          <span className="screen__background__shape screen__background__shape4" />
+          <span className="screen__background__shape screen__background__shape3" />
+          <span className="screen__background__shape screen__background__shape2" />
+          <span className="screen__background__shape screen__background__shape1" />
+        </div>
+      </div>
     </div>
   );
 };

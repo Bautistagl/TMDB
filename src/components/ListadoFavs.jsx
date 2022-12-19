@@ -1,8 +1,11 @@
-import React from "react";
-
-import Button from "react-bootstrap/Button";
+import * as React from "react";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
+import Grid2 from "@mui/material/Unstable_Grid2"; // Grid version 2
+import { Button, CardActionArea, CardActions } from "@mui/material";
 import axios from "axios";
-import { MdDelete } from "react-icons/md";
 
 const ListadoFavs = ({ favs }) => {
   let foto = "https://image.tmdb.org/t/p/w500";
@@ -12,36 +15,26 @@ const ListadoFavs = ({ favs }) => {
   };
   return (
     <div className="background">
+      <h1>Tus peliculas favoritas</h1>
       <table>
-        <thead>
-          {favs ? <h2 className="tituloFavs">Peliculas Favoritas</h2> : ""}
-          <tr>
-            <td></td>
-          </tr>
-        </thead>
         <tbody className="contenedor">
           {favs
             ? favs.map((fav) => (
                 <tr key={fav.id}>
                   <td>
-                    <h5>{fav.tituloPelicula}</h5>
+                    <figure class="card card--dark">
+                      <div class="card__image-container">
+                        <img
+                          src={foto.concat(fav.foto)}
+                          alt="Espeon"
+                          class="card__image"
+                        />
+                      </div>
 
-                    <img
-                      className="poster"
-                      src={foto.concat(fav.fotoPelicula)}
-                      alt="foto"
-                    />
-                    <Button href={fav.idPelicula} variant="outline-light">
-                      Ver mas detalles
-                    </Button>
-                    <Button
-                      variant="danger"
-                      onClick={() => {
-                        handleFav(fav);
-                      }}
-                    >
-                      <MdDelete />
-                    </Button>
+                      <figcaption class="card__caption">
+                        <h1 class="card__name">{fav.titulo}</h1>
+                      </figcaption>
+                    </figure>
                   </td>
                 </tr>
               ))

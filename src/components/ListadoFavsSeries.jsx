@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import axios from "axios";
 import { MdDelete } from "react-icons/md";
 
-const ListadoFavsSeries = ({ favsSeries }) => {
+const ListadoFavsSeries = ({ favs }) => {
   let foto = "https://image.tmdb.org/t/p/w500";
   const url = "series/";
   const handleFav = (a) => {
@@ -12,36 +12,26 @@ const ListadoFavsSeries = ({ favsSeries }) => {
   };
   return (
     <div className="background">
+      <h1>Tus series favoritas</h1>
       <table>
-        <thead>
-          {favsSeries ? <h2 className="tituloFavs">Series Favoritas</h2> : ""}
-          <tr>
-            <td></td>
-          </tr>
-        </thead>
         <tbody className="contenedor">
-          {favsSeries
-            ? favsSeries.map((fav) => (
+          {favs
+            ? favs.map((fav) => (
                 <tr key={fav.id}>
                   <td>
-                    <h5>{fav.tituloSerie}</h5>
+                    <figure class="card card--dark">
+                      <div class="card__image-container">
+                        <img
+                          src={foto.concat(fav.foto)}
+                          alt="Espeon"
+                          class="card__image"
+                        />
+                      </div>
 
-                    <img
-                      className="poster"
-                      src={foto.concat(fav.fotoSerie)}
-                      alt="foto"
-                    />
-                    <Button href={url + fav.idSerie} variant="outline-light">
-                      Ver mas detalles
-                    </Button>
-                    <Button
-                      variant="danger"
-                      onClick={() => {
-                        handleFav(fav);
-                      }}
-                    >
-                      <MdDelete />
-                    </Button>
+                      <figcaption class="card__caption">
+                        <h1 class="card__name">{fav.titulo}</h1>
+                      </figcaption>
+                    </figure>
                   </td>
                 </tr>
               ))

@@ -37,7 +37,9 @@ router.post("/", (req, res) => {
 });
 router.get("/PaginaUsuarios", (req, res) => {
   const token = req.cookies.token;
+  if (!token) return res.sendStatus(401);
   const payload = validateToken(token);
+  if (!payload) return res.sendStatus(401);
   const password = payload.data;
 
   User.findOne({ where: { password } }).then((info) => {
@@ -68,6 +70,7 @@ router.post("/favoritos", function (req, res) {
       .then((fav) => res.send(fav));
   });
 });
+
 router.post("/login", function (req, res) {
   const email = req.body.email;
   const password = req.body.password;
