@@ -6,6 +6,7 @@ const router = express.Router();
 const { generateToken, validateToken } = require("../config/token");
 const bcrypt = require("bcrypt");
 const Favs = require("../modelos/favs");
+import { client } from "../../src/supabase/client";
 
 router.delete("/borrar", (req, res) => {
   Favs.destroy({ where: { id: req.body.id } });
@@ -75,21 +76,25 @@ router.post("/login", function (req, res) {
   const email = req.body.email;
   const password = req.body.password;
 
-  User.findOne({ where: { email } }).then((info) => {
-    if (!info) {
-      return res.send(401);
-    }
-
-    bcrypt.hash(password, info.salt).then((resultado) => {
-      if (resultado === info.password) {
-        const token = generateToken(resultado);
-        res.cookie("token", token);
-        res.send(info);
-      } else {
+  client
+    .from("peliculas")
+    .select()
+    .eq("email", email)
+    .then((info) => {
+      if (!info) {
         return res.send(401);
       }
+
+      bcrypt.hash(password, info.salt).then((resultado) => {
+        if (resultado === info.password) {
+          const token = generateToken(resultado);
+          res.cookie("token", token);
+          res.send(info);
+        } else {
+          return res.send(401);
+        }
+      });
     });
-  });
 });
 router.post("/logout", (req, res) => {
   res.clearCookie("token");
