@@ -1,23 +1,26 @@
 import * as React from "react";
 import axios from "axios";
+import { client } from "../supabase/client";
+import { useState } from "react";
+import { useSelector } from "react-redux";
 
 const CardBusqueda = ({ fav }) => {
+  const user = useSelector((state) => state.user);
   let foto = "https://image.tmdb.org/t/p/w500";
-  const handleFav = (a) => {
-    axios.post(
-      "https://tmdb-back3.onrender.com/api/users/favoritos",
-      { withCredentials: true, credentials: "include" },
-      {
-        idd: a.id,
+  const [usuario, setUsuario] = useState({});
+  const handleFav = async (a) => {
+    try {
+      const { data, error } = await client.from("peliculas").insert({
         foto: a.poster_path,
         titulo: a.title,
         fecha: a.release_date,
-
-        adult: a.adult,
         valoracion: a.vote_average,
         resumen: a.overview,
-      }
-    );
+        idUsuario: user.id,
+      });
+    } catch (error) {
+      console.error(error);
+    }
   };
   return (
     <div>
@@ -33,7 +36,6 @@ const CardBusqueda = ({ fav }) => {
             </div>
 
             <figcaption class="card__caption">
-              {console.log(fav)}
               <h1 class="card__name">{fav.title}</h1>
 
               <table class="card__stats">

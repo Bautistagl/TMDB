@@ -2,23 +2,22 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import axios from "axios";
+
 import ListadoFavs from "./ListadoFavs";
 import { useNavigate } from "react-router";
-import Navbar1 from "../commons/Navbar";
+
 import Navbar2 from "../commons/NavbarIn";
+import { client } from "../supabase/client";
 
 const PelisFavs = () => {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
   const [favs, SetFavs] = useState([]);
   useEffect(() => {
-    axios
-      .get(`https://tmdb-back3.onrender.com/api/users/favoritos/${user.id}`, {
-        withCredentials: true,
-        credentials: "include",
-      })
-
+    client
+      .from("peliculas")
+      .select()
+      .eq("idUsuario", user.id)
       .then((info) => SetFavs(info.data));
   }, []);
 

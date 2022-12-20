@@ -12,8 +12,8 @@ const ListadoFavs = ({ favs }) => {
 
   const handleFav = (a) => {
     axios.delete(
-      "https://tmdb-back3.onrender.com/api/users/borrar",
-      { withCredentials: true, credentials: "include" },
+      "/api/users/borrar",
+
       { data: { id: a.id } }
     );
   };

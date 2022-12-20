@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { client } from "../supabase/client";
 
 import { useNavigate } from "react-router";
 
@@ -25,19 +26,20 @@ const Registro = () => {
     setLastname(e.target.value);
   };
 
-  const handleRegistro = (e) => {
+  const handleRegistro = async (e) => {
     e.preventDefault();
-    if (lastname && email) {
-      axios.post(
-        `https://tmdb-back3.onrender.com/api/users`,
-        { withCredentials: true, credentials: "include" },
-        {
-          email: email,
-          password: password,
-          name: name,
-          lastname: lastname,
-        }
-      );
+    const respuesta = await client.from("personas").insert({
+      email: email,
+      contra: password,
+      nombre: name,
+    });
+
+    if (email) {
+      axios.post(`/api/users`, {
+        email: email,
+        password: password,
+      });
+
       navigate("/");
     } else {
       alert("Rellene todos los campos porfavor");

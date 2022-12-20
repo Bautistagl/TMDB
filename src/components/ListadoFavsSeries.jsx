@@ -8,8 +8,8 @@ const ListadoFavsSeries = ({ favs }) => {
   const url = "series/";
   const handleFav = (a) => {
     axios.delete(
-      "https://tmdb-back3.onrender.com/api/users/borrar/favs",
-      { withCredentials: true, credentials: "include" },
+      "/api/users/borrar/favs",
+
       { data: { id: a.id } }
     );
   };

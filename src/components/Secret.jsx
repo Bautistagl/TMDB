@@ -17,10 +17,7 @@ const Secret = () => {
   const [favsSeries, SetFavsSeries] = useState([]);
 
   const handleLogOut = () => {
-    axios.post("https://tmdb-back3.onrender.com/api/users/logout", {
-      withCredentials: true,
-      credentials: "include",
-    });
+    axios.post("/api/users/logout");
     navigate("/");
   };
 
@@ -28,6 +25,7 @@ const Secret = () => {
     return (
       <div className="background">
         <body>
+          {console.log(user)}
           <Navbar bg="dark" variant="dark">
             <Container>
               <Navbar.Brand>
