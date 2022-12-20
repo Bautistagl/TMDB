@@ -6,7 +6,6 @@ const router = express.Router();
 const { generateToken, validateToken } = require("../config/token");
 const bcrypt = require("bcrypt");
 const Favs = require("../modelos/favs");
-const cors = require("cors");
 
 router.delete("/borrar", (req, res) => {
   Favs.destroy({ where: { id: req.body.id } });
@@ -18,25 +17,25 @@ router.delete("/borrar/favs", (req, res) => {
   res.send("se borro");
 });
 
-router.get("/", cors(), (req, res) => {
+router.get("/", (req, res) => {
   User.findAll().then((respuesta) => res.send(respuesta));
 });
-router.get("/favoritosSeries/:id", cors(), (req, res) => {
+router.get("/favoritosSeries/:id", (req, res) => {
   FavsSerie.findAll({ where: { dueñoId: req.params.id } }).then((respuesta) => {
     res.send(respuesta);
   });
 });
-router.get("/favoritos/:id", cors(), (req, res) => {
+router.get("/favoritos/:id", (req, res) => {
   Favs.findAll({ where: { dueñoId: req.params.id } }).then((respuesta) => {
     res.send(respuesta);
   });
 });
-router.post("/", cors(), (req, res) => {
+router.post("/", (req, res) => {
   User.create(req.body).then((resultado) => {
     res.status(201).send(resultado);
   });
 });
-router.get("/PaginaUsuarios", cors(), (req, res) => {
+router.get("/PaginaUsuarios", (req, res) => {
   const token = req.cookies.token;
   if (!token) return res.sendStatus(401);
   const payload = validateToken(token);
@@ -47,7 +46,7 @@ router.get("/PaginaUsuarios", cors(), (req, res) => {
     res.send(info);
   });
 });
-router.post("/favoritosSeries", cors(), function (req, res) {
+router.post("/favoritosSeries", function (req, res) {
   const token = req.cookies.token;
   const payload = validateToken(token);
   const password = payload.data;
@@ -59,7 +58,7 @@ router.post("/favoritosSeries", cors(), function (req, res) {
       .then((fav) => res.send(fav));
   });
 });
-router.post("/favoritos", cors(), function (req, res) {
+router.post("/favoritos", function (req, res) {
   const token = req.cookies.token;
   const payload = validateToken(token);
   const password = payload.data;
@@ -72,7 +71,7 @@ router.post("/favoritos", cors(), function (req, res) {
   });
 });
 
-router.post("/login", cors(), function (req, res) {
+router.post("/login", function (req, res) {
   const email = req.body.email;
   const password = req.body.password;
 
@@ -92,7 +91,7 @@ router.post("/login", cors(), function (req, res) {
     });
   });
 });
-router.post("/logout", cors(), (req, res) => {
+router.post("/logout", (req, res) => {
   res.clearCookie("token");
 
   res.sendStatus(204);
