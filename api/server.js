@@ -18,7 +18,12 @@ app.use(volleyball);
 app.use(express.static("public"));
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
+app.use(
+  cors({
+    methods: ["GET", "POST", "DELETE", "OPTIONS"],
+    credentials: true,
+  })
+);
 app.use("/api", routes);
 app.use("/api", (req, res) => {
   res.sendStatus(404);
