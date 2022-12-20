@@ -21,16 +21,11 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
+    origin: "*",
     methods: ["GET", "POST", "DELETE", "OPTIONS"],
     credentials: true,
   })
 );
-
-const handler = (req, res) => {
-  const d = new Date();
-  res.end(d.toString());
-};
-app.use(allowCors(handler));
 
 app.use("/api", routes);
 app.use("/api", (req, res) => {
