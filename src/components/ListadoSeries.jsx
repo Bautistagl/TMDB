@@ -1,9 +1,7 @@
 import React from "react";
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
-import axios from "axios";
+
 import Navbar from "react-bootstrap/Navbar";
-import CardBusqueda from "../commons/CardPeliculas";
+
 import CardSerie from "../commons/CardSeries";
 
 const ListadoSeries = ({ peliculas }) => {
@@ -11,7 +9,7 @@ const ListadoSeries = ({ peliculas }) => {
   const url = "series/";
 
   let foto = "https://image.tmdb.org/t/p/w500";
- 
+
   return (
     <div className="background">
       <table>

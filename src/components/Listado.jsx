@@ -1,11 +1,7 @@
-import axios from "axios";
 import React from "react";
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
-import { MdFavorite } from "react-icons/md";
 
 import Navbar from "react-bootstrap/Navbar";
-import CardPeli from "./CardInicio";
+
 import CardBusqueda from "../commons/CardPeliculas";
 const Listado = ({ peliculas }) => {
   const pelicula = peliculas.results;

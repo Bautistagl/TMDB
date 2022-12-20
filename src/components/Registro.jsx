@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import Button from "react-bootstrap/Button";
+
 import { useNavigate } from "react-router";
 
 const Registro = () => {
@@ -27,13 +27,17 @@ const Registro = () => {
 
   const handleRegistro = (e) => {
     e.preventDefault();
-    if (lastname && email && password && name) {
-      axios.post(`/api/users`, {
-        email: email,
-        password: password,
-        name: name,
-        lastname: lastname,
-      });
+    if (lastname && email) {
+      axios.post(
+        `https://tmdb-back3.onrender.com/api/users`,
+        { withCredentials: true, credentials: "include" },
+        {
+          email: email,
+          password: password,
+          name: name,
+          lastname: lastname,
+        }
+      );
       navigate("/");
     } else {
       alert("Rellene todos los campos porfavor");

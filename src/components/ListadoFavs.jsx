@@ -11,7 +11,11 @@ const ListadoFavs = ({ favs }) => {
   let foto = "https://image.tmdb.org/t/p/w500";
 
   const handleFav = (a) => {
-    axios.delete("api/users/borrar", { data: { id: a.id } });
+    axios.delete(
+      "https://tmdb-back3.onrender.com/api/users/borrar",
+      { withCredentials: true, credentials: "include" },
+      { data: { id: a.id } }
+    );
   };
   return (
     <div className="background">

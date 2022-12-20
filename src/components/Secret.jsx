@@ -17,20 +17,11 @@ const Secret = () => {
   const [favsSeries, SetFavsSeries] = useState([]);
 
   const handleLogOut = () => {
-    axios.post("api/users/logout");
+    axios.post("https://tmdb-back3.onrender.com/api/users/logout", {
+      withCredentials: true,
+      credentials: "include",
+    });
     navigate("/");
-  };
-  const buscarSerieFav = () => {
-    if (favsSeries) {
-      SetFavsSeries();
-    } else {
-      axios
-        .get(`/api/users/favoritosSeries/${user.id}`)
-
-        .then((info) => SetFavsSeries(info.data));
-
-      alert("Aparecen abajo");
-    }
   };
 
   if (user.email) {

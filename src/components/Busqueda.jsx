@@ -20,7 +20,10 @@ const Busqueda = (peliculas) => {
     setTitulo(e.target.value);
   };
   const handleLogOut = () => {
-    axios.post("api/users/logout");
+    axios.post("https://tmdb-back3.onrender.com/api/users/logout", {
+      withCredentials: true,
+      credentials: "include",
+    });
     navigate("/");
   };
 

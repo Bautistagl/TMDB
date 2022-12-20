@@ -15,7 +15,10 @@ const BusquedaSeries = (peliculas) => {
   const [pelicula, SetPelicula] = useState([]);
 
   const handleLogOut = () => {
-    axios.post("api/users/logout");
+    axios.post("https://tmdb-back3.onrender.com/api/users/logout", {
+      withCredentials: true,
+      credentials: "include",
+    });
     navigate("/");
   };
 

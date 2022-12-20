@@ -12,10 +12,15 @@ export const login = createAsyncThunk("user/login", async (user, thunkAPI) => {
   try {
     const { email, password } = user;
 
-    const respuesta = await axios.post("/api/users/login", {
-      email: email,
-      password: password,
-    });
+    const respuesta = await axios.post(
+      "https://tmdb-back3.onrender.com/api/users/login",
+      { withCredentials: true, credentials: "include" },
+
+      {
+        email: email,
+        password: password,
+      }
+    );
 
     return respuesta.data;
   } catch (error) {
@@ -29,8 +34,9 @@ export const isLoggedIn = createAsyncThunk(
   "user/isLoggedIn",
   async (thunkAPI) => {
     try {
-      const respuesta = await axios.get("/api/users/PaginaUsuarios");
-      console.log(respuesta.data, "ESTA ES LA RESPUESTA");
+      const respuesta = await axios.get(
+        "https://tmdb-back3.onrender.com/api/users/PaginaUsuarios"
+      );
 
       return respuesta.data;
     } catch (error) {

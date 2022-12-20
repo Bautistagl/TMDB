@@ -14,7 +14,10 @@ const PelisFavs = () => {
   const [favs, SetFavs] = useState([]);
   useEffect(() => {
     axios
-      .get(`/api/users/favoritos/${user.id}`)
+      .get(`https://tmdb-back3.onrender.com/api/users/favoritos/${user.id}`, {
+        withCredentials: true,
+        credentials: "include",
+      })
 
       .then((info) => SetFavs(info.data));
   }, []);

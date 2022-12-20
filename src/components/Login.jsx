@@ -19,10 +19,14 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`/api/users/login`, {
-        email: email,
-        password: password,
-      });
+      await axios.post(
+        `https://tmdb-back3.onrender.com/api/users/login`,
+        { withCredentials: true, credentials: "include" },
+        {
+          email: email,
+          password: password,
+        }
+      );
       navigate("/Usuario");
     } catch ({ response }) {
       alert("Ingreso mal la contraseña o email, pruebe de nuevo");

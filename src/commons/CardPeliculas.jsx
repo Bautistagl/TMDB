@@ -4,16 +4,20 @@ import axios from "axios";
 const CardBusqueda = ({ fav }) => {
   let foto = "https://image.tmdb.org/t/p/w500";
   const handleFav = (a) => {
-    axios.post("api/users/favoritos", {
-      idd: a.id,
-      foto: a.poster_path,
-      titulo: a.title,
-      fecha: a.release_date,
+    axios.post(
+      "https://tmdb-back3.onrender.com/api/users/favoritos",
+      { withCredentials: true, credentials: "include" },
+      {
+        idd: a.id,
+        foto: a.poster_path,
+        titulo: a.title,
+        fecha: a.release_date,
 
-      adult: a.adult,
-      valoracion: a.vote_average,
-      resumen: a.overview,
-    });
+        adult: a.adult,
+        valoracion: a.vote_average,
+        resumen: a.overview,
+      }
+    );
   };
   return (
     <div>

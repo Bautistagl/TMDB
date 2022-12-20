@@ -1,6 +1,5 @@
 import React from "react";
 
-import Button from "react-bootstrap/Button";
 import axios from "axios";
 import { MdDelete } from "react-icons/md";
 
@@ -8,7 +7,11 @@ const ListadoFavsSeries = ({ favs }) => {
   let foto = "https://image.tmdb.org/t/p/w500";
   const url = "series/";
   const handleFav = (a) => {
-    axios.delete("api/users/borrar/favs", { data: { id: a.id } });
+    axios.delete(
+      "https://tmdb-back3.onrender.com/api/users/borrar/favs",
+      { withCredentials: true, credentials: "include" },
+      { data: { id: a.id } }
+    );
   };
   return (
     <div className="background">
