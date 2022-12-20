@@ -7,8 +7,6 @@ const db = require("./config");
 const models = require("./modelos");
 const routes = require("./routes");
 const cookieParser = require("cookie-parser");
-const cors = require("cors");
-const allowCors = require("./cors");
 
 // app.use(
 //   express.static(
@@ -19,7 +17,6 @@ app.use(volleyball);
 app.use(express.static("public"));
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors(allowCors()));
 
 app.use("/api", routes);
 app.use("/api", (req, res) => {
