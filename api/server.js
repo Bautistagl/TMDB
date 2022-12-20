@@ -8,6 +8,7 @@ const models = require("./modelos");
 const routes = require("./routes");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+const allowCors = require("./cors");
 
 // app.use(
 //   express.static(
@@ -24,6 +25,13 @@ app.use(
     credentials: true,
   })
 );
+
+const handler = (req, res) => {
+  const d = new Date();
+  res.end(d.toString());
+};
+app.use(allowCors(handler));
+
 app.use("/api", routes);
 app.use("/api", (req, res) => {
   res.sendStatus(404);
