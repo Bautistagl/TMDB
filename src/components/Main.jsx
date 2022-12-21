@@ -18,13 +18,6 @@ import PelisFavs from "./PelisFavs";
 import SeriesFavs from "./SeriesFavs";
 
 function Main() {
-  const user = useSelector((store) => store.user);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    {
-      user.id == null ? dispatch(isLoggedIn()) : console.log(user, "NADAAAAA");
-    }
-  }, []);
   return (
     <div className="background">
       <Routes>

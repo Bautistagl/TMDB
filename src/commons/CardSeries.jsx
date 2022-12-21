@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 
 const CardSerie = ({ fav }) => {
   let foto = "https://image.tmdb.org/t/p/w500";
-  const user = useSelector((state) => state.user);
+  const user = JSON.parse(localStorage.getItem("usuario"));
   const handleFav = async (a) => {
     try {
       const { data, error } = await client.from("series1").insert({

@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 
 const CardBusqueda = ({ fav }) => {
-  const user = useSelector((state) => state.user);
+  const user = JSON.parse(localStorage.getItem("usuario"));
   let foto = "https://image.tmdb.org/t/p/w500";
   const [usuario, setUsuario] = useState({});
   const handleFav = async (a) => {

@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { client } from "../supabase/client";
 
 const initialState = {
   email: null,

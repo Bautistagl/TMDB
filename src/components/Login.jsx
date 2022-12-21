@@ -3,6 +3,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { client } from "../supabase/client";
 
+// const { generateToken, validateToken } = require("../config/token");
+
 const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -20,10 +22,16 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`api/users/login`, {
-        email: email,
-        password: password,
-      });
+      client
+        .from("personas")
+        .select()
+        .eq("email", email)
+        .then((info) => {
+          if (!info) {
+            return alert("error");
+          }
+          window.localStorage.setItem("usuario", JSON.stringify(info.data[0]));
+        });
 
       navigate("/Usuario");
     } catch ({ response }) {

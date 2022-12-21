@@ -4,9 +4,8 @@ const User = require("../modelos/users");
 const { findAll } = require("../modelos/users");
 const router = express.Router();
 const { generateToken, validateToken } = require("../config/token");
-const bcrypt = require("bcrypt");
+
 const Favs = require("../modelos/favs");
-import { client } from "../../src/supabase/client";
 
 router.delete("/borrar", (req, res) => {
   Favs.destroy({ where: { id: req.body.id } });
@@ -17,7 +16,6 @@ router.delete("/borrar/favs", (req, res) => {
   FavsSerie.destroy({ where: { id: req.body.id } });
   res.send("se borro");
 });
-
 router.get("/", (req, res) => {
   User.findAll().then((respuesta) => res.send(respuesta));
 });
@@ -40,9 +38,9 @@ router.get("/PaginaUsuarios", (req, res) => {
   const token = req.cookies.token;
   if (!token) return res.sendStatus(401);
   const payload = validateToken(token);
+
   if (!payload) return res.sendStatus(401);
   const password = payload.data;
-
   User.findOne({ where: { password } }).then((info) => {
     res.send(info);
   });
@@ -51,7 +49,6 @@ router.post("/favoritosSeries", function (req, res) {
   const token = req.cookies.token;
   const payload = validateToken(token);
   const password = payload.data;
-
   User.findOne({ where: { password } }).then((info) => {
     const user = info.dataValues.id;
     FavsSerie.create(req.body)
@@ -63,7 +60,6 @@ router.post("/favoritos", function (req, res) {
   const token = req.cookies.token;
   const payload = validateToken(token);
   const password = payload.data;
-
   User.findOne({ where: { password } }).then((info) => {
     const user = info.dataValues.id;
     Favs.create(req.body)
@@ -71,36 +67,19 @@ router.post("/favoritos", function (req, res) {
       .then((fav) => res.send(fav));
   });
 });
-
 router.post("/login", function (req, res) {
   const email = req.body.email;
   const password = req.body.password;
 
-  client
-    .from("peliculas")
-    .select()
-    .eq("email", email)
-    .then((info) => {
-      if (!info) {
-        return res.send(401);
-      }
-
-      bcrypt.hash(password, info.salt).then((resultado) => {
-        if (resultado === info.password) {
-          const token = generateToken(resultado);
-          res.cookie("token", token);
-          res.send(info);
-        } else {
-          return res.send(401);
-        }
-      });
-    });
+  User.findOne({ where: { email } }).then((info) => {
+    if (!info) {
+      return res.send(401);
+    }
+  });
 });
 router.post("/logout", (req, res) => {
   res.clearCookie("token");
-
   res.sendStatus(204);
 });
-
 module.exports = router;
 ///la ruta que se hace desde axios post va directo  a localhost 3001 solo tengo que hacer coincidir con el post de routes

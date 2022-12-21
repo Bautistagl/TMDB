@@ -11,7 +11,7 @@ import { client } from "../supabase/client";
 
 const PelisFavs = () => {
   const navigate = useNavigate();
-  const user = useSelector((state) => state.user);
+  const user = JSON.parse(localStorage.getItem("usuario"));
   const [favs, SetFavs] = useState([]);
   useEffect(() => {
     client

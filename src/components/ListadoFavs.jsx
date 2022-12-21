@@ -1,21 +1,19 @@
 import * as React from "react";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import Grid2 from "@mui/material/Unstable_Grid2"; // Grid version 2
-import { Button, CardActionArea, CardActions } from "@mui/material";
-import axios from "axios";
+import { client } from "../supabase/client";
 
 const ListadoFavs = ({ favs }) => {
   let foto = "https://image.tmdb.org/t/p/w500";
+  const user = JSON.parse(localStorage.getItem("usuario"));
+  const handleBorrar = (a) => {
+    const { error, data } = client
+      .from("peliculas")
+      .delete()
+      .eq("id", a.id)
+      .then((info) => {
+        alert("se borro");
+      });
 
-  const handleFav = (a) => {
-    axios.delete(
-      "/api/users/borrar",
-
-      { data: { id: a.id } }
-    );
+    if (error) throw error;
   };
   return (
     <div className="background">
@@ -37,6 +35,14 @@ const ListadoFavs = ({ favs }) => {
 
                       <figcaption class="card__caption">
                         <h1 class="card__name">{fav.titulo}</h1>
+                        <button
+                          onClick={() => {
+                            handleBorrar(fav);
+                          }}
+                        >
+                          {" "}
+                          borrar
+                        </button>
                       </figcaption>
                     </figure>
                   </td>
