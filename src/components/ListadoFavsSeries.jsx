@@ -9,9 +9,15 @@ const ListadoFavsSeries = ({ favs }) => {
   const user = JSON.parse(localStorage.getItem("usuario"));
   const url = "series/";
   const handleBorrar = (a) => {
-    const { error, data } = client.from("series1").delete().eq("id", a.id);
+    const { error, data } = client
+      .from("series1")
+      .delete()
+      .eq("id", a.id)
+      .then((info) => {
+        alert("se borro");
+      });
+
     if (error) throw error;
-    console.log(data);
   };
   return (
     <div className="background">
