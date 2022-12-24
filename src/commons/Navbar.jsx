@@ -2,6 +2,7 @@ import Container from "react-bootstrap/Container";
 import { useNavigate } from "react-router";
 import Navbar from "react-bootstrap/Navbar";
 import Button from "@mui/material/Button";
+import { Link } from "react-router-dom";
 const Navbar1 = () => {
   const navigate = useNavigate();
   return (
@@ -17,7 +18,9 @@ const Navbar1 = () => {
           />{" "}
         </Navbar.Brand>
       </Container>
-
+      <Link to={"/Registro"}> Registrarse </Link>
+      <Link to={"/Login"}> Iniciar Sesion </Link>
+      {/* 
       <div className="navbar2">
         <ul>
           <a className="link1" href="#">
@@ -51,7 +54,7 @@ const Navbar1 = () => {
             </li>
           </a>
         </ul>
-      </div>
+      </div> */}
     </Navbar>
   );
 };
