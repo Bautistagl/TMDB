@@ -13,6 +13,10 @@ body {
 .navbar {
   min-height: 65px;
 }
+.icono{
+  height: 30px;
+  width: 30px;
+}
 img {
   width: 200px;
   height: 350px;
@@ -21,10 +25,6 @@ img {
   object-fit: cover;
 }
 
-.background {
-  background-color: white;
-  min-height: 1000px;
-}
 .card {
   border: white;
   border-color: white;
@@ -43,10 +43,21 @@ img {
   grid-template-columns: repeat(5, 1fr);
   gap: 10px;
 }
-
+.cartas{
+  
+  padding: 10px;
+}
+.contenedor3{
+  min-width: 1000px
+}
+.navbar{
+  width: 100vw;
+}
 .contenedor1 {
   width: 90%;
   max-width: 1000px;
+  justify-content: center;
+  margin-left: 25%;
 
   align-content: center;
   color: aliceblue;
@@ -60,6 +71,9 @@ img {
   width: 200px;
   display: flex;
   font-size: 20px;
+  color: white;
+  font-weight: 200;
+  
 
   justify-content: center;
 }
@@ -67,11 +81,16 @@ img {
   display: flex;
   justify-content: center;
   border-radius: 20px;
+  box-shadow: 5px 20px 50px #000;
 }
 .titulos {
   align-content: center;
+  color:white;
 }
 .tabla {
+  margin-left: -0%;
+  justify-content: center;
+  align-content: center;
   width: 100%;
 }
 .todohover {
@@ -85,21 +104,20 @@ img {
 @import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800,300italic,400italic,600italic,700italic,800italic);
 body {
-  background: linear-gradient(rgba(30, 27, 38, 0.95), rgba(30, 27, 38, 0.95)),
-    url("https://i.ibb.co/FDGqCmM/papers-co-ag74-interstellar-wide-space-film-movie-art-33-iphone6-wallpaper.jpg");
-  background-position: center;
-  background-size: cover;
-  background-repeat: repeat;
+ 
 }
-.container {
-  background-color: #1e1b26;
+.container1 {
+  background: #0f0c29;
   width: 100%;
-  height: 100%;
+  height: 92%;
+  border-radius: 40px;
+  
+  
 }
 .cellphone-container {
   width: 375px;
   height: 650px;
-  background-color: #1e1b26;
+  background-color: #0f0c29;
   margin: 60px auto 0 auto;
   box-shadow: 5px 5px 115px -14px black;
   border-radius: 4px;
@@ -112,18 +130,19 @@ body {
 }
 .menu i {
   font-size: 40px;
-  color: #fe4141;
+ 
   filter: drop-shadow(4px 4px 10px rgba(0, 0, 0, 0.5));
 }
 .movie-img {
   width: 100%;
-  height: 480px;
+  height: 500px;
+
+ 
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   z-index: 111 !important;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
+ 
   -webkit-mask-image: -webkit-gradient(
     linear,
     left top,
@@ -136,36 +155,12 @@ body {
     color-stop(1, rgba(0, 0, 0, 0))
   );
   position: relative;
-  object-fit: cover;
+  object-fit: contain;
+
+ 
 }
 .movie {
-  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+39,1e1b26+53&0+38,1+55 */
-  background: -moz-linear-gradient(
-    top,
-    rgba(255, 255, 255, 0) 38%,
-    rgba(255, 255, 255, 0.06) 39%,
-    rgba(30, 27, 38, 0.88) 53%,
-    #1e1b26 55%
-  );
-  /* FF3.6-15 */
-  background: -webkit-linear-gradient(
-    top,
-    rgba(255, 255, 255, 0) 38%,
-    rgba(255, 255, 255, 0.06) 39%,
-    rgba(30, 27, 38, 0.88) 53%,
-    #1e1b26 55%
-  );
-  /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0) 38%,
-    rgba(255, 255, 255, 0.06) 39%,
-    rgba(30, 27, 38, 0.88) 53%,
-    #1e1b26 55%
-  );
-  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00ffffff', endColorstr='#1e1b26',GradientType=0);
-  /* IE6-9 */
+  background: #0f0c29;
   position: absolute;
   background-size: contain;
   background-size: cover;
@@ -174,6 +169,8 @@ body {
   height: 660px;
   display: block;
   border-radius: 4px;
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
 }
 .text-movie-cont {
   padding: 0px 12px;
@@ -363,4 +360,126 @@ h5 {
   bottom: 15px;
   right: 15px;
   border-radius: 50px;
+}
+
+body{
+	
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	font-family: 'Jost', sans-serif;
+	background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+}
+.main{
+	width: 350px;
+	height: 500px;
+	background: red;
+	overflow: hidden;
+	background:#302b63;
+	
+	box-shadow: 5px 20px 50px #000;
+}
+#chk{
+	display: none;
+}
+.signup{
+	position: relative;
+	width:100%;
+	height: 100%;
+}
+.label{
+	color: #fff;
+	font-size: 2.3em;
+	justify-content: center;
+	display: flex;
+	margin: 60px;
+	font-weight: bold;
+	cursor: pointer;
+	transition: .5s ease-in-out;
+}
+.botonera{
+ 
+  width:100vh;
+}
+.input{
+	width: 60%;
+	height: 35px;
+	background: #e0dede;
+	justify-content: center;
+	display: flex;
+	margin: 20px auto;
+	padding: 10px;
+	border: none;
+	outline: none;
+	border-radius: 5px;
+}
+.button{
+	width: 60%;
+	height: 40px;
+	margin: 10px auto;
+	justify-content: center;
+	display: block;
+	color: #fff;
+	background: #573b8a;
+	font-size: 1em;
+	font-weight: bold;
+	margin-top: 20px;
+	outline: none;
+	border: none;
+	border-radius: 5px;
+	transition: .2s ease-in;
+	cursor: pointer;
+}
+button:hover{
+	background: #6d44b8;
+}
+.login{
+	height: 460px;
+	background: #eee;
+	border-radius: 60% / 10%;
+	transform: translateY(-180px);
+	transition: .8s ease-in-out;
+}
+.login label{
+	color: #573b8a;
+	transform: scale(.6);
+}
+
+#chk:checked ~ .login{
+	transform: translateY(-500px);
+}
+#chk:checked ~ .login label{
+	transform: scale(1);	
+}
+#chk:checked ~ .signup label{
+	transform: scale(.6);
+}
+.buttonNavbar{
+  display: inline-block;
+	width: 150px;
+	height: 40px;
+	margin: 10px auto;
+	justify-content: center;
+	display: block;
+	color: #fff;
+	background: #573b8a;
+	font-size: 1em;
+	font-weight: bold;
+	margin-top: 20px;
+	outline: none;
+	border: none;
+	border-radius: 5px;
+	transition: .2s ease-in;
+	cursor: pointer;
+}
+.forms{
+
+}
+.navbar2{
+  display: inline-block;
+  padding: 10px;
+  justify-content: center;
+  justify-items: center;
 }

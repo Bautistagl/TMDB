@@ -1,20 +1,17 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, {  useState } from "react";
+
 import { useNavigate } from "react-router-dom";
-import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
-import ListadoFavs from "./ListadoFavs";
-import { useSelector } from "react-redux";
-import Navbar from "react-bootstrap/Navbar";
+
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import ListadoFavsSeries from "./ListadoFavsSeries";
+
+
 
 const Secret = () => {
   const navigate = useNavigate();
 
   const [favsSeries, SetFavsSeries] = useState([]);
-  const user = JSON.parse(localStorage.getItem("usuario"));
+ 
 
   const handleLogOut = () => {
     localStorage.removeItem("usuario");
@@ -22,86 +19,49 @@ const Secret = () => {
   };
 
   return (
-    <div className="background">
-      <body>
-        <Navbar bg="dark" variant="dark">
-          <Container>
-            <Navbar.Brand> Bienvenido !</Navbar.Brand>
-          </Container>
-        </Navbar>
-      </body>
-      <div className="inicio">
-        <ul>
-          <a className="link1" href="#">
-            <li
-              onClick={() => {
-                navigate("/BuscarPelis");
-              }}
-            >
-              Buscar Pelis
-              <span />
-              <span />
-              <span />
-              <span />
-            </li>
-          </a>
-          <a className="link1" href="#">
-            <li
-              onClick={() => {
-                navigate("/buscarSeries");
-              }}
-            >
-              Buscar series
-              <span />
-              <span />
-              <span />
-              <span />
-            </li>
-          </a>
-          <a className="link1" href="#">
-            <li
-              onClick={() => {
-                // buscarPeliFav();
-                navigate("/pelisFavs");
-              }}
-            >
-              Peliculas favs
-              <span />
-              <span />
-              <span />
-              <span />
-            </li>
-          </a>
-          <a className="link1" href="#">
-            <li
-              onClick={() => {
-                // buscarSerieFav();
-                navigate("/seriesFavs");
-              }}
-            >
-              Series Favs
-              <span />
-              <span />
-              <span />
-              <span />
-            </li>
-          </a>
-          <a className="link1" href="#">
-            <li
-              onClick={() => {
-                handleLogOut();
-              }}
-            >
-              Cerrar sesion
-              <span />
-              <span />
-              <span />
-              <span />
-            </li>
-          </a>
-        </ul>
+    <> 
+    
+    <div >
+      <div className="contenedor3">
+        <button className="button"
+          onClick={() => {
+            navigate("/BuscarPelis");
+          }}
+        >
+         Buscar Pelis
+        </button>
+        <button className="button"
+          onClick={() => {
+            navigate("/buscarSeries");
+          }}
+        >
+          Buscar series
+        </button>
+        <button className="button"
+          onClick={() => {
+            // buscarPeliFav();
+            navigate("/pelisFavs");
+          }}
+        >
+          Peliculas favs
+        </button>
+        <button className="button"
+          onClick={() => {
+            // buscarSerieFav();
+            navigate("/seriesFavs");
+          }}
+        >    Series Favs
+        </button>
+        <button className="button"
+          onClick={() => {
+            handleLogOut();
+          }}
+        >
+          Cerrar sesion
+        </button>
       </div>
     </div>
+    </>
   );
 };
 export default Secret;

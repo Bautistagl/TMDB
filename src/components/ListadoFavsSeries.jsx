@@ -1,7 +1,7 @@
 import React from "react";
 
 import axios from "axios";
-import { MdDelete } from "react-icons/md";
+
 import { client } from "../supabase/client";
 
 const ListadoFavsSeries = ({ favs }) => {
@@ -26,31 +26,18 @@ const ListadoFavsSeries = ({ favs }) => {
         <tbody className="contenedor">
           {favs
             ? favs.map((fav) => (
-                <tr key={fav.id}>
-                  <td>
-                    <figure class="card card--dark">
-                      <div class="card__image-container">
-                        <img
-                          src={foto.concat(fav.foto)}
-                          alt="Espeon"
-                          class="card__image"
-                        />
-                      </div>
-                      <button
-                        onClick={() => {
-                          handleBorrar(fav);
-                        }}
-                      >
-                        {" "}
-                        borrar{" "}
-                      </button>
-
-                      <figcaption class="card__caption">
-                        <h1 class="card__name">{fav.titulo}</h1>
-                      </figcaption>
-                    </figure>
-                  </td>
-                </tr>
+              <tr key={fav.id}>
+              
+              <td>
+                <img
+                
+                  src={foto.concat(fav.foto)}
+                  alt="Foto no disponible"
+                  className="fotos"
+                />
+              </td>
+              <h1 className="titulo">{fav.titulo}</h1>
+            </tr>
               ))
             : ""}
         </tbody>

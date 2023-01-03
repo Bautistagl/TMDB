@@ -1,62 +1,34 @@
-import Container from "react-bootstrap/Container";
-import { useNavigate } from "react-router";
-import Navbar from "react-bootstrap/Navbar";
-import Button from "@mui/material/Button";
-import { Link } from "react-router-dom";
-const Navbar1 = () => {
-  const navigate = useNavigate();
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+
+import { Link } from 'react-router-dom';
+
+function NavScrollExample() {
   return (
-    <Navbar bg="dark" variant="dark">
-      <Container>
-        <Navbar.Brand href="/">
-          <img
-            alt=""
-            src="https://play-lh.googleusercontent.com/bBT7rPEvIr2tvzaXcoIdxeeFd8GNUbpWVl94tmiWOwrzwbjMwzDwyhNvAIl5t37u0c8"
-            width="40"
-            height="30"
-            className="imgnavbar"
-          />{" "}
-        </Navbar.Brand>
+    <Navbar className='navbar' bg="dark" expand="lg">
+      <Container fluid>
+        <Navbar.Brand >TMDB</Navbar.Brand>
+        <Navbar.Toggle aria-controls="navbarScroll" />
+        <Navbar.Collapse id="navbarScroll">
+          <Nav
+            className="me-auto my-2 my-lg-0"
+            style={{ maxHeight: '100px' }}
+            navbarScroll
+          >
+            
+         
+          </Nav>
+
+         <Link to={"/login"}> 
+            <Button className='botonera'>Registrarse/Iniciar Sesión</Button>
+            </Link>
+        </Navbar.Collapse>
       </Container>
-      <Link to={"/Registro"}> Registrarse </Link>
-      <Link to={"/Login"}> Iniciar Sesion </Link>
-      {/* 
-      <div className="navbar2">
-        <ul>
-          <a className="link1" href="#">
-            <li
-              onClick={() => {
-                navigate("/registro");
-              }}
-            >
-              Registrarse
-              <span />
-              <span />
-              <span />
-              <span />
-            </li>
-          </a>
-        </ul>
-      </div>
-      <div className="navbar2">
-        <ul>
-          <a className="link1" href="#">
-            <li
-              onClick={() => {
-                navigate("/login");
-              }}
-            >
-              Iniciar sesion
-              <span />
-              <span />
-              <span />
-              <span />
-            </li>
-          </a>
-        </ul>
-      </div> */}
     </Navbar>
   );
-};
+}
 
-export default Navbar1;
+export default NavScrollExample;

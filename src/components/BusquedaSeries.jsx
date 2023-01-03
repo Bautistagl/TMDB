@@ -3,10 +3,7 @@ import axios from "axios";
 
 import { useNavigate, useParams } from "react-router-dom";
 import ListadoSeries from "./ListadoSeries";
-import Button from "react-bootstrap/Button";
-import ButtonGroup from "react-bootstrap/ButtonGroup";
-import Container from "react-bootstrap/Container";
-import Navbar from "react-bootstrap/Navbar";
+
 
 const BusquedaSeries = (peliculas) => {
   const params = useParams();
@@ -15,7 +12,7 @@ const BusquedaSeries = (peliculas) => {
   const [pelicula, SetPelicula] = useState([]);
 
   const handleLogOut = () => {
-    axios.post("/api/users/logout");
+    localStorage.removeItem("usuario");
     navigate("/");
   };
 
@@ -51,91 +48,78 @@ const BusquedaSeries = (peliculas) => {
   };
 
   return (
-    <div className="background">
-      <Navbar bg="dark" variant="dark">
-        <Container>
-          <Navbar.Brand> Buscar Peliculas</Navbar.Brand>
-          <form onSubmit={handleSubmit}>
-            <label>Pelicula: </label>
-            <input value={titulo} onChange={handleTitulo}></input>
+    <>
+    <div >
+      <nav> 
+        <div className="navbar2"> 
+            <form className="forms" onSubmit={handleSubmit}>
+              <label>Serie: </label>
+              <input value={titulo} onChange={handleTitulo}></input>
 
-            <button type="submit">Submit</button>
-          </form>
-        </Container>
-        <ButtonGroup size="sm" aria-label="Basic example">
-          <div className="navbar2">
-            <ul>
-              <a className="link1" href="#">
-                <li
-                  onClick={() => {
-                    HandlePrevious();
-                  }}
-                >
-                  Anterior
-                  <span />
-                  <span />
-                  <span />
-                  <span />
-                </li>
-              </a>
-            </ul>
-          </div>
-          <div className="navbar2">
-            <ul>
-              <a className="link1" href="#">
-                <li
-                  onClick={() => {
-                    HandleNext();
-                  }}
-                >
-                  Siguiente
-                  <span />
-                  <span />
-                  <span />
-                  <span />
-                </li>
-              </a>
-            </ul>
-          </div>
-          <div className="navbar2">
-            <ul>
-              <a className="link1" href="#">
-                <li
-                  onClick={() => {
-                    navigate("/Usuario");
-                  }}
-                >
-                  Inicio
-                  <span />
-                  <span />
-                  <span />
-                  <span />
-                </li>
-              </a>
-            </ul>
-          </div>
-          <div className="navbar2">
-            <ul>
-              <a className="link1" href="#">
-                <li
-                  onClick={() => {
-                    handleLogOut();
-                  }}
-                >
-                  Cerrar Sesion
-                  <span />
-                  <span />
-                  <span />
-                  <span />
-                </li>
-              </a>
-            </ul>
-          </div>
-        </ButtonGroup>
-      </Navbar>
+              <button className="buttonNavbar" type="submit">Submit</button>
+            </form>
+            </div>
+            <div  className="navbar2" >  
+                  <button className="buttonNavbar"
+                    onClick={() => {
+                      HandlePrevious();
+                    }}
+                  >
+                    Anterior
+                   
+                  </button> </div>
+            <div className="navbar2">
+                  <button
+                  className="buttonNavbar"
+                    onClick={() => {
+                      HandleNext();
+                    }}
+                    
+                  >
+                    Siguiente
+                  
+                  </button>
+               
+             
+            </div>
+            <div className="navbar2">
+          
+             
+                  <button
+                  className="buttonNavbar"
+                    onClick={() => {
+                      navigate("/Usuario");
+                    }}
+                  >
+                    Inicio
+                 
+                  </button>
+            
+             
+            </div>
+            <div className="navbar2">
+            
+               
+                  <button
+                  className="buttonNavbar"
+                    onClick={() => {
+                      handleLogOut();
+                    }}
+                  >
+                    Cerrar Sesion
+                 
+                  </button>
+              
+            
+            </div>
+        
+     
 
+      </nav>
       <ListadoSeries peliculas={pelicula} />
+      
     </div>
+  </>
   );
 };
 export default BusquedaSeries;

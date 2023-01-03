@@ -1,12 +1,10 @@
 import App from "./App";
-import Container from "react-bootstrap/Container";
 
-import Navbar from "react-bootstrap/Navbar";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+
 import { useNavigate } from "react-router";
 import Navbar1 from "../commons/Navbar";
 

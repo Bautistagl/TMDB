@@ -2,12 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import Listado from "./Listado";
 import { useNavigate, useParams } from "react-router-dom";
-import Button from "react-bootstrap/Button";
-import ButtonGroup from "react-bootstrap/ButtonGroup";
-import Container from "react-bootstrap/Container";
 
-import Navbar from "react-bootstrap/Navbar";
-import ListadoFavs from "./ListadoFavs";
 
 const Busqueda = (peliculas) => {
   const params = useParams();
@@ -20,7 +15,7 @@ const Busqueda = (peliculas) => {
     setTitulo(e.target.value);
   };
   const handleLogOut = () => {
-    axios.post("/api/users/logout");
+    localStorage.removeItem("usuario");
     navigate("/");
   };
 
@@ -53,92 +48,75 @@ const Busqueda = (peliculas) => {
 
   return (
     <>
-      <div className="background">
-        <body>
-          <Navbar bg="dark" variant="dark">
-            <Container>
-              <Navbar.Brand> Buscar Peliculas</Navbar.Brand>
-              <form onSubmit={handleSubmit}>
+      <div >
+        <nav> 
+          <div className="navbar2"> 
+              <form className="forms" onSubmit={handleSubmit}>
                 <label>Pelicula: </label>
                 <input value={titulo} onChange={handleTitulo}></input>
 
-                <button type="submit">Submit</button>
+                <button className="buttonNavbar" type="submit">Submit</button>
               </form>
-            </Container>
-            <ButtonGroup size="sm" aria-label="Basic example">
-              <div className="navbar2">
-                <ul>
-                  <a className="link1" href="#">
-                    <li
+              </div>
+              <div  className="navbar2" >  
+                    <button className="buttonNavbar"
                       onClick={() => {
                         HandlePrevious();
                       }}
                     >
                       Anterior
-                      <span />
-                      <span />
-                      <span />
-                      <span />
-                    </li>
-                  </a>
-                </ul>
-              </div>
+                     
+                    </button> </div>
               <div className="navbar2">
-                <ul>
-                  <a className="link1" href="#">
-                    <li
+                    <button
+                    className="buttonNavbar"
                       onClick={() => {
                         HandleNext();
                       }}
+                      
                     >
                       Siguiente
-                      <span />
-                      <span />
-                      <span />
-                      <span />
-                    </li>
-                  </a>
-                </ul>
+                    
+                    </button>
+                 
+               
               </div>
               <div className="navbar2">
-                <ul>
-                  <a className="link1" href="#">
-                    <li
+            
+               
+                    <button
+                    className="buttonNavbar"
                       onClick={() => {
                         navigate("/Usuario");
                       }}
                     >
                       Inicio
-                      <span />
-                      <span />
-                      <span />
-                      <span />
-                    </li>
-                  </a>
-                </ul>
+                   
+                    </button>
+              
+               
               </div>
               <div className="navbar2">
-                <ul>
-                  <a className="link1" href="#">
-                    <li
+              
+                 
+                    <button
+                    className="buttonNavbar"
                       onClick={() => {
                         handleLogOut();
                       }}
                     >
                       Cerrar Sesion
-                      <span />
-                      <span />
-                      <span />
-                      <span />
-                    </li>
-                  </a>
-                </ul>
+                   
+                    </button>
+                
+              
               </div>
-            </ButtonGroup>
-          </Navbar>
+          
+       
 
+        </nav>
           <Listado peliculas={pelicula} />
-        </body>
+        
       </div>
     </>
   );

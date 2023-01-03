@@ -17,36 +17,23 @@ const ListadoFavs = ({ favs }) => {
   };
   return (
     <div className="background">
-      <h1>Tus peliculas favoritas</h1>
+      <h1 className="titulos">Tus peliculas favoritas</h1>
       <table>
         <tbody className="contenedor">
           {favs
             ? favs.map((fav) => (
-                <tr key={fav.id}>
-                  <td>
-                    <figure class="card card--dark">
-                      <div class="card__image-container">
-                        <img
-                          src={foto.concat(fav.foto)}
-                          alt="Espeon"
-                          class="card__image"
-                        />
-                      </div>
-
-                      <figcaption class="card__caption">
-                        <h1 class="card__name">{fav.titulo}</h1>
-                        <button
-                          onClick={() => {
-                            handleBorrar(fav);
-                          }}
-                        >
-                          {" "}
-                          borrar
-                        </button>
-                      </figcaption>
-                    </figure>
-                  </td>
-                </tr>
+              <tr key={fav.id}>
+              
+              <td>
+                <img
+                
+                  src={foto.concat(fav.foto)}
+                  alt="Foto no disponible"
+                  className="fotos"
+                />
+              </td>
+              <h1 className="titulo">{fav.titulo}</h1>
+            </tr>
               ))
             : ""}
         </tbody>

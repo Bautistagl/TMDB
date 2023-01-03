@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link, useParams } from "react-router-dom";
+import {  useParams } from "react-router-dom";
 import Container from "./Container";
 
 const App = () => {
@@ -20,7 +20,7 @@ const App = () => {
   }, []);
 
   return (
-    <div className="background">
+    <div >
       <Container peliculas={pelicula.results} />
     </div>
   );

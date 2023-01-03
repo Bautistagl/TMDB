@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+
 import { useNavigate } from "react-router-dom";
 import { client } from "../supabase/client";
 
@@ -9,6 +9,33 @@ const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [email1, setEmail1] = useState("");
+  const [password1, setPassword1] = useState("");
+  const [name1, setName1] = useState("");
+ 
+
+  // const [usuario, SetUsuario] = useState({});
+
+  const handleEmail1 = (e) => {
+    setEmail1(e.target.value);
+  };
+  const handlePassword1 = (e) => {
+    setPassword1(e.target.value);
+  };
+  const handleName = (e) => {
+    setName1(e.target.value);
+  };
+
+
+  const handleRegistro = async (e) => {
+    e.preventDefault();
+    const respuesta = await client.from("personas").insert({
+      email: email1,
+      contra: password1,
+      nombre: name1,
+    });
+     
+    }
 
   // const [usuario, SetUsuario] = useState({});
 
@@ -27,13 +54,17 @@ const Login = () => {
         .select()
         .eq("email", email)
         .then((info) => {
-          if (!info) {
-            return alert("error");
+         
+          if (info.data.length===0) {
+            return alert("Usuario o contraseña incorrecta");
           }
-          window.localStorage.setItem("usuario", JSON.stringify(info.data[0]));
+          if(info.data.length!==0){
+
+            window.localStorage.setItem("usuario", JSON.stringify(info.data[0]));
+            navigate("/Usuario");
+          }
         });
 
-      navigate("/Usuario");
     } catch ({ response }) {
       alert("Ingreso mal la contraseña o email, pruebe de nuevo");
       console.log((response.status, response.statusText));
@@ -41,43 +72,35 @@ const Login = () => {
   };
 
   return (
-    <div className="container">
-      <div className="screen">
-        <div className="screen__content">
-          <form onSubmit={handleLogin} className="login">
-            <div className="login__field">
-              <i className="login__icon fas fa-user" />
-              <input
-                value={email}
-                onChange={handleEmail}
-                type="text"
-                className="login__input"
-                placeholder=" Email"
-              />
-            </div>
-            <div className="login__field">
-              <i className="login__icon fas fa-lock" />
-              <input
-                value={password}
-                onChange={handlePassword}
-                type="password"
-                className="login__input"
-                placeholder="Contraseña"
-              />
-            </div>
-            <button type="submit" className="button login__submit">
-              <span className="button__text">Iniciar sesión</span>
-              <i className="button__icon fas fa-chevron-right" />
-            </button>
-          </form>
-        </div>
-        <div className="screen__background">
-          <span className="screen__background__shape screen__background__shape4" />
-          <span className="screen__background__shape screen__background__shape3" />
-          <span className="screen__background__shape screen__background__shape2" />
-          <span className="screen__background__shape screen__background__shape1" />
+    <div>
+ <div> 
+        <div className="main">  	
+          <input type="checkbox" id="chk" aria-hidden="true" />
+          <div className="signup">
+            <form  onSubmit={handleRegistro}>
+              <label className="label" htmlFor="chk" aria-hidden="true">Registrarse</label>
+              <input  value={name1}
+                onChange={handleName}  type="text" className="input" placeholder="Usuario" required />
+              <input  value={email1}
+                onChange={handleEmail1} type="email" className="input" placeholder="Email" required />
+              <input  value={password1}
+                onChange={handlePassword1} type="password"className="input" placeholder="Contraseña" required />
+              <button className="button">Registrarse</button>
+            </form>
+          </div>
+          <div className="login">
+            <form onSubmit={handleLogin}>
+              <label className="label" htmlFor="chk" aria-hidden="true">Iniciar Sesión</label>
+              <input value={email}
+                onChange={handleEmail} type="email"className="input" placeholder="Email" required />
+              <input  value={password}
+                onChange={handlePassword} type="password" className="input" placeholder="Contraseña" required />
+              <button className="button">Entrar</button>
+            </form>
+          </div>
         </div>
       </div>
+   
     </div>
   );
 };

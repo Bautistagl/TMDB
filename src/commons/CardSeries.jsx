@@ -1,8 +1,18 @@
 import * as React from "react";
 import { client } from "../supabase/client";
-import { useSelector } from "react-redux";
+
+import { useState } from "react";
 
 const CardSerie = ({ fav }) => {
+  const [isHovering, setIsHovering] = useState(false);
+
+  const handleMouseOver = () => {
+    if (isHovering == false) {
+      setIsHovering(true);
+    } else {
+      setIsHovering(false);
+    }
+  };
   let foto = "https://image.tmdb.org/t/p/w500";
   const user = JSON.parse(localStorage.getItem("usuario"));
   const handleFav = async (a) => {
@@ -22,51 +32,78 @@ const CardSerie = ({ fav }) => {
   };
   return (
     <div>
+      {isHovering === true && (
+       
+       <>  <div className="todohover">
+       <div className="container1">
+         <div className="cellphone-container">
+           <div className="movie">
+             <div className="menu">
+              <img onClick={handleMouseOver} className="icono" src={"/multiply.png"}/>
+             </div>
+             <img
+               src={foto.concat(fav.poster_path)}
+               className="movie-img"
+             />
+             <div className="text-movie-cont">
+               <div className="mr-grid">
+                 <div className="col1">
+                   <h4>{fav.title}</h4>
+                   <ul className="movie-gen">
+                     
+                     <li>{fav.first_air_date} /</li>
+                     <li>Calificación general: {fav.vote_average}/10</li>
+                   </ul>
+                 </div>
+               </div>
+               <div className="mr-grid summary-row">
+                 <div className="col2">
+                   <h5>RESUMEN</h5>
+                 </div>
+                 <div className="col2">
+                  
+                 </div>
+               </div>
+               <div className="mr-grid">
+                 <div className="col1">
+                   <p className="movie-description">
+                    {fav.overview}
+                    {" "}
+                   </p>
+                 </div>
+               </div>
+               <div className="mr-grid actors-row">
+                 <div className="col1">
+                  
+                 </div>
+               </div>
+               <div className="mr-grid action-row">
+                   
+               <div className="col6 action-btn">
+                   <img  onClick={() => {
+                    handleFav(fav)
+                  }} className="icono" src="/favourite.png"/>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div></>
+      )}
+      
+
       <tr key={fav.id}>
         <td>
-          <figure class="card1 card--dark1">
-            <div class="card__image-container">
-              <img
-                src={foto.concat(fav.poster_path)}
-                alt="Sin-Foto"
-                class="card__image"
-              />
-            </div>
-
-            <figcaption class="card__caption">
-              <h1 class="card__name">{fav.name}</h1>
-
-              <table class="card__stats">
-                <tbody>
-                  <tr>
-                    <th>Fecha de estreno</th>
-                    <td>{fav.first_air_date}</td>
-                  </tr>
-                  <tr>
-                    <th>Valoracion</th>
-                    <td>{fav.vote_average}</td>
-                  </tr>
-                </tbody>
-              </table>
-
-              <div class="card__abilities">
-                <h5>Resumen</h5>
-                <br />
-              </div>
-              <span class="card__label">{fav.overview.slice(0, 250)}...</span>
-              <a href="#">
-                <img
-                  onClick={() => {
-                    handleFav(fav);
-                  }}
-                  src="/star (1).png"
-                  className="like"
-                />
-              </a>
-            </figcaption>
-          </figure>
+          <img
+            onClick={handleMouseOver}
+            src={foto.concat(fav.poster_path)}
+            alt="Espeon"
+            className="fotos"
+          />
         </td>
       </tr>
+      <h1 className="titulo">{fav.title}</h1>
     </div>
   );
 };

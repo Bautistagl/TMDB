@@ -24,7 +24,7 @@ app.use("/api", (req, res) => {
 });
 app.use((req, res) => {
   res.sendFile(
-    "/home/bautistagl/Escritorio/TMDB DE CERO/26-checkpoint-TMDB/public/index.html"
+    "/home/Bauti/Escritorio/Portfolio - Acceso Directo/tmdb/public/index.html"
   );
 });
 app.use((err, req, res, next) => {
